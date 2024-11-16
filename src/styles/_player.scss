@@ -56,7 +56,7 @@
     }
 
     &__title {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         font-size: 35px;
     }
 
@@ -86,11 +86,11 @@
     flex: 1.2;
     @include flex-center;
     flex-direction: column;
-    row-gap: 20px;
+    row-gap: clamp(0.625rem, 0.5rem + 0.63vw, 1.25rem);
     position: relative;
 
     @media (max-width: 1000px) {
-        height: 88vh;
+        height: 85dvh;
     }
 
     &__open {
@@ -131,11 +131,11 @@
     }
 
     &__group {
-        margin-top: 70px;
+        margin-top: clamp(2.5rem, 2.125rem + 1.88vw, 4.375rem);
     }
 
     &__track {
-        margin-bottom: 40px;
+        margin-bottom: 20px;
         opacity: 0.6;
     }
 
@@ -160,8 +160,8 @@
 
     &__circle {
         position: relative;
-        width: 340px;
-        height: 340px;
+        width: 320px;
+        height: 320px;
 
         &-icon {
             fill: none;
@@ -180,7 +180,7 @@
     }
 
     &__image {
-        width: 280px;
+        width: 260px;
         border-radius: 50%;
         -o-object-fit: cover;
         object-fit: cover;
@@ -194,8 +194,8 @@
 
     &__controls {
         @include flex-center;
-        -moz-column-gap: 20px;
-        column-gap: 20px;
+        -moz-column-gap: 15px;
+        column-gap: 15px;
         height: 76px;
     }
 
@@ -214,6 +214,7 @@
         }
 
         &-play {
+
             svg {
                 @include square(70px);
 
@@ -273,6 +274,7 @@
             display: none;
             -webkit-animation: show 0.4s;
             animation: show 0.4s;
+            z-index: 99;
 
             input[type="range"] {
                 accent-color: var(--color-light-additional);
