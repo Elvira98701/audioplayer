@@ -1,21 +1,42 @@
 import { htmlElements } from "@scripts/helpers/htmlElements";
 import { state } from "@scripts/helpers/state";
+import { TrackType } from "@scripts/helpers/types";
 import { setCurrentAudio } from "./setCurrentAudio";
 
 export const handleClickNext = (): void => {
-  const { current } = state;
+  const current = state.current as TrackType;
 
-  const currentItem = document.querySelector(`[data-id="${current.id}"]`);
+  const currentItem = document.querySelector<HTMLLIElement>(
+    `[data-id="${current.id}"]`
+  );
 
-  if (!currentItem) return;
+  if (!currentItem) {
+    console.warn("Error: Current item not found.");
+    return;
+  }
 
-  const next = currentItem.nextElementSibling?.dataset;
-  const first = htmlElements.tracksList?.firstElementChild?.dataset;
+  const nextItem = currentItem.nextElementSibling as HTMLLIElement | null;
+  const firstItem = htmlElements.tracksList
+    ?.firstElementChild as HTMLLIElement | null;
 
-  let itemId = next?.id || first?.id;
+  let nextItemId: string | undefined;
 
-  if (!itemId) return;
+  if (nextItem) {
+    nextItemId = nextItem.dataset.id;
+  } else {
+    nextItemId = firstItem?.dataset.id;
+  }
 
-  itemId = Number(itemId);
-  setCurrentAudio(itemId, state.audios);
+  if (!nextItemId) {
+    console.warn("Error: No next item found.");
+    return;
+  }
+
+  const parsedId = Number(nextItemId);
+
+  if (isNaN(parsedId)) {
+    console.warn(`Error: Invalid data-id value: "${nextItemId}".`);
+    return;
+  }
+  setCurrentAudio(parsedId, state.audios);
 };

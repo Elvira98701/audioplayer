@@ -1,11 +1,17 @@
 import { htmlElements } from "@scripts/helpers/htmlElements";
 import { state } from "@scripts/helpers/state";
+import { TrackType } from "@scripts/helpers/types";
 
 export const togglePlaying = (): void => {
-  const { playing, current } = state;
-  const { audio } = current;
+  const playing = state.playing;
+  const current = state.current as TrackType;
+  const audio = current.audio;
 
-  playing ? audio.play() : audio.pause();
+  if (audio) {
+    playing ? audio.play() : audio.pause();
+  }
 
-  htmlElements.playButton.classList.toggle("playing", playing);
+  if (htmlElements.playButton) {
+    htmlElements.playButton.classList.toggle("playing", playing);
+  }
 };

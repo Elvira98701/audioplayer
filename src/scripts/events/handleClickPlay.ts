@@ -1,14 +1,19 @@
 import { state } from "@scripts/helpers/state";
+import { TrackType } from "@scripts/helpers/types";
 
 export const handleClickPlay = (event: Event): void => {
-  const { playing, current } = state;
-  const { audio } = current;
+  const playing = state.playing;
+  const current = state.current as TrackType;
+  const audio = current.audio;
+  const currentTarget = event.currentTarget as HTMLButtonElement;
 
-  !playing ? audio.play() : audio.pause();
+  if (audio) {
+    !playing ? audio.play() : audio.pause();
+  }
 
   state.playing = !playing;
 
   if (!event.target) return;
 
-  event.currentTarget.classList.toggle("playing", !playing);
+  currentTarget.classList.toggle("playing", !playing);
 };

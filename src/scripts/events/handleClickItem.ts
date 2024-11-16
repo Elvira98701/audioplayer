@@ -1,8 +1,14 @@
 import { state } from "@scripts/helpers/state";
 import { setCurrentAudio } from "./setCurrentAudio";
 
-export const handleClickItem = ({ target }): void => {
-  const playerItem = target.closest(".player__item");
+export const handleClickItem = (event: Event): void => {
+  const element = event.target as HTMLElement | null;
+
+  if (!element) {
+    return;
+  }
+
+  const playerItem: HTMLLIElement | null = element.closest(".player__item");
 
   if (!playerItem) {
     return;

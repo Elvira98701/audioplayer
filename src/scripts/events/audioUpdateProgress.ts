@@ -1,38 +1,42 @@
 import { state } from "@scripts/helpers/state";
-import { handleClickNext } from "./handleClickNext";
 import { toMinAndSec } from "@scripts/helpers/utils";
+import { TrackType } from "@scripts/helpers/types";
+import { handleClickNext } from "./handleClickNext";
 
-export const audioUpdateProgress = ({
-  audio,
-  duration,
-}: {
-  audio: HTMLAudioElement;
-  duration: number;
-}): void => {
-  const progressLine = document.querySelector("#progressLine");
-  const timeline = document.querySelector("#timeline");
+export const audioUpdateProgress = (current: TrackType): void => {
+  const audio = current.audio as HTMLAudioElement;
+  const duration = current.duration as number;
+  const progressLine: SVGCircleElement | null =
+    document.querySelector("#progressLine");
+  const timeline: HTMLSpanElement | null = document.querySelector("#timeline");
 
   if (!progressLine) return;
 
   const totalLength = progressLine.getTotalLength();
   progressLine.style.strokeDasharray = `${totalLength}px`;
   progressLine.style.strokeDashoffset = `${totalLength}px`;
-  // timeline.textContent = "00:00";
 
-  audio.addEventListener("timeupdate", ({ target }) => {
-    const { currentTime } = target;
+  audio.addEventListener("timeupdate", (event: Event) => {
+    const audioTarget = event.target as HTMLAudioElement;
+    const currentTime = audioTarget.currentTime;
     const width = totalLength - currentTime * (totalLength / duration);
 
     progressLine.style.strokeDashoffset = `${width}px`;
 
-    timeline.innerHTML = toMinAndSec(currentTime) ?? "00:00";
+    if (timeline) {
+      timeline.innerHTML = toMinAndSec(currentTime) ?? "00:00";
+    }
   });
 
-  audio.addEventListener("ended", ({ target }) => {
-    target.currentTime = 0;
+  audio.addEventListener("ended", (event: Event) => {
+    const audioTarget = event.target as HTMLAudioElement;
+    audioTarget.currentTime = 0;
     progressLine.style.strokeDashoffset = `${totalLength}px`;
-    timeline.textContent = "00:00";
 
-    state.repeating ? target.play() : handleClickNext();
+    if (timeline) {
+      timeline.textContent = "00:00";
+    }
+
+    state.repeating ? audioTarget.play() : handleClickNext();
   });
 };

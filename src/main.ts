@@ -10,10 +10,10 @@ import { handleClickItem } from "@scripts/events/handleClickItem";
 import { handleRepeat } from "@scripts/events/handleRepeat";
 import { handleShuffle } from "@scripts/events/handleShuffle";
 import { handleVolume } from "@scripts/events/handleVolume";
-
-import "@styles/index.scss";
 import { handleOpenMenu } from "@scripts/events/handleOpenMenu";
 import { handleCloseMenu } from "@scripts/events/handleCloseMenu";
+
+import "@styles/index.scss";
 
 document.addEventListener("DOMContentLoaded", () => {
   const renderAudios = async (): Promise<PromiseSettledResult<TrackType>[]> => {
