@@ -1,5 +1,5 @@
 .app {
-    height: 100vh;
+    height: 100dvh;
     position: relative;
 
     &__inner {
@@ -25,7 +25,7 @@
         padding: 20px;
 
         @media (max-width: 1000px) {
-            position: fixed;
+            position: absolute;
             inset: 0;
             background-image: linear-gradient(to bottom, var(--color-accent), var(--color-accent-dark));
             z-index: 100;
