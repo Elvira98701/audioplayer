@@ -15,7 +15,9 @@ export const setCurrentAudio = (audioId: number, audios: TrackType[]): void => {
   pauseCurrentAudio();
 
   state.current = current;
+
   renderCarrentTrack(current, htmlElements);
+  current.audio.volume = state.volume;
   handlePlayer();
   audioUpdateProgress(current);
 

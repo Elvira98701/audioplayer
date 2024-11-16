@@ -23,7 +23,7 @@ button {
 }
 
 h2 {
-    font-size: 30px;
+    font-size: clamp(1.375rem, 1.275rem + 0.5vw, 1.875rem);
 }
 
 h1,

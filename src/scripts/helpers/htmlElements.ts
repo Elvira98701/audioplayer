@@ -11,4 +11,7 @@ export const htmlElements: HtmlElementsType = {
   repeatButton: document.querySelector("#repeat"),
   volume: document.querySelector("#volume"),
   timelineEnd: document.querySelector("#timelineEnd"),
+  closeButton: document.querySelector("#closeButton"),
+  openButton: document.querySelector("#openButton"),
+  playerBlock: document.querySelector(".player__block"),
 };

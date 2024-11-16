@@ -28,4 +28,7 @@ export interface HtmlElementsType {
   repeatButton: HTMLButtonElement | null;
   volume: HTMLInputElement | null;
   timelineEnd: HTMLSpanElement | null;
+  closeButton: HTMLButtonElement | null;
+  openButton: HTMLButtonElement | null;
+  playerBlock: HTMLDivElement | null;
 }

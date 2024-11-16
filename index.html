@@ -13,9 +13,19 @@
           <div class="player__block">
             <h1 class="player__title">Tracks</h1>
             <ul class="player__list" id="tracksList"></ul>
+            <button
+              class="player__close"
+              type="button"
+              id="closeButton"
+            ></button>
           </div>
 
           <div class="current">
+            <button
+              class="current__open"
+              id="openButton"
+              type="button"
+            ></button>
             <div class="current__item">
               <span class="current__genre" id="genre">rock</span>
               <h2 class="current__group" id="group">Justin Bieber, DJ Snake</h2>
@@ -39,6 +49,7 @@
                     cx="75"
                     cy="75"
                     stroke-width="2"
+                    id="line"
                   />
                   <circle
                     id="progressLine"
