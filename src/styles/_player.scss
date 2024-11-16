@@ -1,5 +1,5 @@
 .app {
-    height: 100vh;
+    height: 100dvh;
     position: relative;
 
     &__inner {
@@ -8,12 +8,13 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        padding-block: 30px;
+        padding-block: 20px;
 
         @media (max-width: 1000px) {
-            top: 0;
-            left: 0;
+            height: 100%;
+            inset: 0;
             transform: translate(0, 0);
+            @include flex-center;
         }
     }
 }
@@ -49,7 +50,7 @@
         position: absolute;
         top: 30px;
         right: 15px;
-        border: 1px solid var(--color-light-additional);
+        border: 2px dotted var(--color-light-additional);
         border-radius: 50%;
         @include square(50px);
         @include flex-center;
@@ -93,18 +94,13 @@
     @include flex-center;
     flex-direction: column;
     row-gap: clamp(0.625rem, 0.5rem + 0.63vw, 1.25rem);
-    position: relative;
-
-    @media (max-width: 1000px) {
-        height: 85vh;
-    }
 
     &__open {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 20px;
+        left: 20px;
         border-radius: 50%;
-        @include square(70px);
+        @include square(50px);
         @include flex-center;
         border: 2px dotted var(--color-light-additional);
         display: none;
@@ -122,14 +118,14 @@
     }
 
     &__genre {
-        @include square(70px);
+        @include square(50px);
         @include flex-center;
         text-align: center;
         border-radius: 50%;
         color: var(--color-light-additional);
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 20px;
+        right: 20px;
         text-transform: capitalize;
         border: 2px dotted;
         font-weight: 600;

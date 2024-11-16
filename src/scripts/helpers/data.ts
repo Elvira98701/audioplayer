@@ -27,7 +27,7 @@ export const tracks: TrackType[] = [
     track: "Let Me Love You",
     link: track1,
     image: image1,
-    genre: "tropical house",
+    genre: "EDM",
   },
   {
     id: 2,
@@ -59,7 +59,7 @@ export const tracks: TrackType[] = [
     track: "Bring Me To Life",
     link: track5,
     image: image5,
-    genre: "alternative rock",
+    genre: "rock",
   },
   {
     id: 6,
@@ -67,7 +67,7 @@ export const tracks: TrackType[] = [
     track: "Thunder",
     link: track6,
     image: image6,
-    genre: "electro pop",
+    genre: "pop",
   },
   {
     id: 7,
