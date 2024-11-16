@@ -173,11 +173,13 @@
         &-main {
             color: rgb(255 255 255 / 0);
             stroke: rgb(255 255 255 / 0.1);
+            cursor: pointer;
         }
 
         &-accent {
             transition: all 0.2s linear;
             color: var(--color-light-additional);
+            pointer-events: none;
         }
     }
 

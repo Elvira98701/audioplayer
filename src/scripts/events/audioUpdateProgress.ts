@@ -8,9 +8,10 @@ export const audioUpdateProgress = (current: TrackType): void => {
   const duration = current.duration as number;
   const progressLine: SVGCircleElement | null =
     document.querySelector("#progressLine");
+  const line: SVGCircleElement | null = document.querySelector("#line");
   const timeline: HTMLSpanElement | null = document.querySelector("#timeline");
 
-  if (!progressLine) return;
+  if (!progressLine || !line) return;
 
   const totalLength = progressLine.getTotalLength();
   progressLine.style.strokeDasharray = `${totalLength}px`;
@@ -38,5 +39,33 @@ export const audioUpdateProgress = (current: TrackType): void => {
     }
 
     state.repeating ? audioTarget.play() : handleClickNext();
+  });
+
+  line.addEventListener("click", (event: MouseEvent) => {
+    const circle = line.getBoundingClientRect();
+    const centerX = circle.left + circle.width / 2;
+    const centerY = circle.top + circle.height / 2;
+
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
+
+    const dx = mouseX - centerX;
+    const dy = mouseY - centerY;
+
+    let angle = Math.atan2(dy, dx);
+    angle = (angle * 180) / Math.PI;
+    angle = (angle + 360) % 360;
+
+    const normalizedAngle = (angle + 90) % 360;
+    const newTime = (normalizedAngle / 360) * duration;
+
+    audio.currentTime = newTime;
+
+    const width = totalLength - newTime * (totalLength / duration);
+    progressLine.style.strokeDashoffset = `${width}px`;
+
+    if (timeline) {
+      timeline.innerHTML = toMinAndSec(newTime) ?? "00:00";
+    }
   });
 };

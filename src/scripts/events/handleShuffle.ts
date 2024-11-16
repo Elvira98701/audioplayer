@@ -6,7 +6,6 @@ export const handleShuffle = (): void => {
 
   if (htmlElements.tracksList) {
     children = htmlElements.tracksList.children;
-    console.log(children);
   }
 
   if (children) {
