@@ -1,5 +1,5 @@
 .app {
-    height: 100dvh;
+    height: 100vh;
     position: relative;
 
     &__inner {
@@ -9,6 +9,12 @@
         left: 50%;
         transform: translate(-50%, -50%);
         padding-block: 30px;
+
+        @media (max-width: 1000px) {
+            top: 0;
+            left: 0;
+            transform: translate(0, 0);
+        }
     }
 }
 
@@ -90,7 +96,7 @@
     position: relative;
 
     @media (max-width: 1000px) {
-        height: 85dvh;
+        height: 85vh;
     }
 
     &__open {
