@@ -239,6 +239,12 @@
                 }
             }
         }
+
+        &-rewind {
+            cursor: pointer;
+            font-weight: 500;
+            color: rgb(255 255 255 / 0.4);
+        }
     }
 
     &__buttons {

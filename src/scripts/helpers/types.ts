@@ -31,4 +31,8 @@ export interface HtmlElementsType {
   closeButton: HTMLButtonElement | null;
   openButton: HTMLButtonElement | null;
   playerBlock: HTMLDivElement | null;
+  rewindPrev: HTMLButtonElement | null;
+  rewindNext: HTMLButtonElement | null;
+  progressLine: SVGCircleElement | null;
+  line: SVGCircleElement | null;
 }

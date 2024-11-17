@@ -14,4 +14,8 @@ export const htmlElements: HtmlElementsType = {
   closeButton: document.querySelector("#closeButton"),
   openButton: document.querySelector("#openButton"),
   playerBlock: document.querySelector(".player__block"),
+  rewindPrev: document.querySelector("#rewindPrev"),
+  rewindNext: document.querySelector("#rewindNext"),
+  progressLine: document.querySelector("#progressLine"),
+  line: document.querySelector("#line"),
 };

@@ -48,7 +48,7 @@
                     r="70"
                     cx="75"
                     cy="75"
-                    stroke-width="2"
+                    stroke-width="3"
                     id="line"
                   />
                   <circle
@@ -58,7 +58,7 @@
                     cx="75"
                     cy="75"
                     stroke="currentColor"
-                    stroke-width="2"
+                    stroke-width="3"
                   />
                 </svg>
                 <img
@@ -71,6 +71,13 @@
             </div>
 
             <div class="current__controls">
+              <button
+                class="current__control-rewind"
+                type="button"
+                id="rewindPrev"
+              >
+                -10 sec
+              </button>
               <button class="current__control" type="button" id="prev">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -126,6 +133,13 @@
                     d="M208,40V216a8,8,0,0,1-16,0V146.77L72.43,221.55A15.95,15.95,0,0,1,48,208.12V47.88A15.95,15.95,0,0,1,72.43,34.45L192,109.23V40a8,8,0,0,1,16,0Z"
                   ></path>
                 </svg>
+              </button>
+              <button
+                class="current__control-rewind"
+                type="button"
+                id="rewindNext"
+              >
+                +10 sec
               </button>
             </div>
 
