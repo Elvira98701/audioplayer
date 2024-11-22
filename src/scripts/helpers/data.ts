@@ -1,4 +1,4 @@
-import { TrackType } from "./types";
+import { ITrack } from "./types";
 
 import track1 from "@assets/audio/track1.mp3";
 import track2 from "@assets/audio/track2.mp3";
@@ -20,7 +20,7 @@ import image7 from "@assets/images/track7.jpg";
 import image8 from "@assets/images/track8.jpg";
 import image9 from "@assets/images/track9.jpg";
 
-export const tracks: TrackType[] = [
+export const tracks: ITrack[] = [
   {
     id: 1,
     group: "Justin Bieber, DJ Snake",

@@ -1,5 +1,5 @@
 import { state } from "@scripts/helpers/state";
-import { TrackType } from "@scripts/helpers/types";
+import { IAudioTrack } from "@scripts/helpers/types";
 import { htmlElements } from "@scripts/helpers/htmlElements";
 import { renderCarrentTrack } from "@scripts/models/renderCarrentTrack";
 import { pauseCurrentAudio } from "./pauseCurrentAudio";
@@ -7,7 +7,10 @@ import { handlePlayer } from "./handlePlayer";
 import { audioUpdateProgress } from "./audioUpdateProgress";
 import { togglePlaying } from "./togglePlaying";
 
-export const setCurrentAudio = (audioId: number, audios: TrackType[]): void => {
+export const setCurrentAudio = (
+  audioId: number,
+  audios: IAudioTrack[]
+): void => {
   const current = audios.find(({ id }) => id === audioId);
 
   if (!current) return;

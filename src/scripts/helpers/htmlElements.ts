@@ -1,6 +1,6 @@
-import { HtmlElementsType } from "./types";
+import { IHtmlElements } from "./types";
 
-export const htmlElements: HtmlElementsType = {
+export const htmlElements: IHtmlElements = {
   tracksList: document.querySelector("#tracksList"),
   genre: document.querySelector("#genre"),
   group: document.querySelector("#group"),

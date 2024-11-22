@@ -1,7 +1,7 @@
-import { TrackType } from "@scripts/helpers/types";
+import { IAudioTrack } from "@scripts/helpers/types";
 import { toMinAndSec } from "@scripts/helpers/utils";
 
-const toHtmlTracks = (audio: TrackType): string => {
+const toHtmlTracks = (audio: IAudioTrack): string => {
   return `
             <li class="player__item" data-id="${audio.id}">
               <div class="player__left">
@@ -26,7 +26,7 @@ const toHtmlTracks = (audio: TrackType): string => {
 
 export const renderAllTracks = (
   tracksList: HTMLUListElement,
-  audio: TrackType
+  audio: IAudioTrack
 ) => {
   tracksList.innerHTML += toHtmlTracks(audio);
 };

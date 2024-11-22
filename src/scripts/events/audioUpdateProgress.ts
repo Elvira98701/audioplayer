@@ -1,12 +1,11 @@
 import { state } from "@scripts/helpers/state";
 import { toMinAndSec } from "@scripts/helpers/utils";
-import { TrackType } from "@scripts/helpers/types";
+import { IAudioTrack } from "@scripts/helpers/types";
 import { handleClickNext } from "./handleClickNext";
 import { htmlElements } from "@scripts/helpers/htmlElements";
 
-export const audioUpdateProgress = (current: TrackType): void => {
-  const audio = current.audio as HTMLAudioElement;
-  const duration = current.duration as number;
+export const audioUpdateProgress = (current: IAudioTrack): void => {
+  const { audio, duration } = current;
   const progressLine = htmlElements.progressLine;
   const timeline: HTMLSpanElement | null = document.querySelector("#timeline");
 

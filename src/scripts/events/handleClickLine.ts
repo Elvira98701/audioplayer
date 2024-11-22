@@ -1,8 +1,8 @@
 import { state } from "@scripts/helpers/state";
-import { TrackType } from "@scripts/helpers/types";
+import { IAudioTrack } from "@scripts/helpers/types";
 
 export const handleClickLine = (event: MouseEvent) => {
-  const current = state.current as TrackType;
+  const current = state.current as IAudioTrack;
   const audio = current.audio as HTMLAudioElement;
   const duration = current.duration as number;
   const line = event.currentTarget as SVGCircleElement;

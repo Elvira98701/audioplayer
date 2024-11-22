@@ -1,23 +1,26 @@
-export interface TrackType {
+export interface ITrack {
   id: number;
   group: string;
   track: string;
   link: string;
   image: string;
   genre: string;
-  duration?: number;
-  audio?: HTMLAudioElement;
 }
 
-export interface StateType {
-  audios: TrackType[];
-  current: TrackType | {};
+export interface IAudioTrack extends ITrack {
+  duration: number;
+  audio: HTMLAudioElement;
+}
+
+export interface IState {
+  audios: IAudioTrack[];
+  current: IAudioTrack | {};
   playing: boolean;
   repeating: boolean;
   volume: number;
 }
 
-export interface HtmlElementsType {
+export interface IHtmlElements {
   tracksList: HTMLUListElement | null;
   genre: HTMLSpanElement | null;
   group: HTMLHeadingElement | null;

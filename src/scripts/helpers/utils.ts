@@ -1,10 +1,7 @@
-const formatTime = (time: number): string | number =>
-  time < 10 ? `0${time}` : time;
+const formatTime = (time: number): string =>
+  time < 10 ? `0${time}` : `${time}`;
 
-export const toMinAndSec = (
-  duration: number | undefined
-): string | undefined => {
-  if (!duration) return;
+export const toMinAndSec = (duration: number): string => {
   const minutes = formatTime(Math.floor(duration / 60));
   const seconds = formatTime(Math.floor(duration - Number(minutes) * 60));
 

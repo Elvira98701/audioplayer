@@ -244,6 +244,11 @@
             cursor: pointer;
             font-weight: 500;
             color: rgb(255 255 255 / 0.4);
+            transition: color 0.3s;
+
+            &:hover {
+                color: var(--color-light-additional);
+            }
         }
     }
 

@@ -1,9 +1,9 @@
-import { HtmlElementsType, TrackType } from "@scripts/helpers/types";
+import { IHtmlElements, IAudioTrack } from "@scripts/helpers/types";
 import { toMinAndSec } from "@scripts/helpers/utils";
 
 export const renderCarrentTrack = (
-  current: TrackType,
-  htmlElements: HtmlElementsType
+  current: IAudioTrack,
+  htmlElements: IHtmlElements
 ): void => {
   const { genre, group, track, image, timelineEnd } = htmlElements;
   if (!genre || !group || !track || !image || !timelineEnd) {

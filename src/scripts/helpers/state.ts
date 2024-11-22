@@ -1,6 +1,6 @@
-import { StateType } from "./types";
+import { IState } from "./types";
 
-export const state: StateType = {
+export const state: IState = {
   audios: [],
   current: {},
   playing: false,
