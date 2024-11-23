@@ -1,8 +1,12 @@
 import { state } from "@scripts/helpers/state";
-import { IAudioTrack } from "@scripts/helpers/types";
+import { isAudioTrack } from "@scripts/helpers/utils";
 
 export const handleVolume = (event: Event) => {
-  const current = state.current as IAudioTrack;
+  const { current } = state;
+
+  if (!isAudioTrack(current)) {
+    return;
+  }
   const eventTarget = event.target as HTMLInputElement;
   const value = Number(eventTarget.value);
   state.volume = value;

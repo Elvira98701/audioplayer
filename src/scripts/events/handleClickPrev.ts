@@ -1,10 +1,14 @@
 import { htmlElements } from "@scripts/helpers/htmlElements";
 import { state } from "@scripts/helpers/state";
-import { IAudioTrack } from "@scripts/helpers/types";
 import { setCurrentAudio } from "./setCurrentAudio";
+import { isAudioTrack } from "@scripts/helpers/utils";
 
 export const handleClickPrev = (): void => {
-  const current = state.current as IAudioTrack;
+  const { current } = state;
+
+  if (!isAudioTrack(current)) {
+    return;
+  }
 
   const currentItem = document.querySelector<HTMLLIElement>(
     `[data-id="${current.id}"]`

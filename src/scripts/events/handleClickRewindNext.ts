@@ -1,10 +1,13 @@
 import { state } from "@scripts/helpers/state";
-import { IAudioTrack } from "@scripts/helpers/types";
+import { isAudioTrack } from "@scripts/helpers/utils";
 
 export const handleClickRewindNext = () => {
-  const current = state.current as IAudioTrack;
-  const audio = current.audio as HTMLAudioElement;
-  const duration = current.duration as number;
+  const { current } = state;
+
+  if (!isAudioTrack(current)) {
+    return;
+  }
+  const { audio, duration } = current;
 
   const newTime = Math.min(audio.currentTime + 10, duration);
   audio.currentTime = newTime;
