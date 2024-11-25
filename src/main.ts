@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const audio = new Audio(track.link);
 
       return new Promise<IAudioTrack>((resolve, reject) => {
-        audio.addEventListener("loadeddata", () => {
+        audio.addEventListener("canplaythrough", () => {
           const newItem: IAudioTrack = {
             ...track,
             duration: audio.duration,
