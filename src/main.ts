@@ -13,9 +13,9 @@ import { handleVolume } from "@scripts/events/handleVolume";
 import { handleOpenMenu } from "@scripts/events/handleOpenMenu";
 import { handleCloseMenu } from "@scripts/events/handleCloseMenu";
 import { hidePreloader } from "@scripts/events/hidePreloader";
+import { handleCreateAudioContext } from "@scripts/events/handleCreateAudioContext";
 
 import "@styles/index.scss";
-import { handleCreateAudioContext } from "@scripts/events/handleCreateAudioContext";
 
 document.addEventListener("DOMContentLoaded", () => {
   const loadAudios = async (): Promise<PromiseSettledResult<IAudioTrack>[]> => {
