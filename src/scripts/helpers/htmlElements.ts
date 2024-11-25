@@ -18,4 +18,5 @@ export const htmlElements: IHtmlElements = {
   rewindNext: document.querySelector("#rewindNext"),
   progressLine: document.querySelector("#progressLine"),
   line: document.querySelector("#line"),
+  canvas: document.querySelector("#visualizer"),
 };

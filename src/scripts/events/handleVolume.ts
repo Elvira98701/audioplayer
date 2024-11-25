@@ -1,7 +1,7 @@
 import { state } from "@scripts/helpers/state";
 import { isAudioTrack } from "@scripts/helpers/utils";
 
-export const handleVolume = (event: Event) => {
+export const handleVolume = (event: Event): void => {
   const { current } = state;
 
   if (!isAudioTrack(current)) {

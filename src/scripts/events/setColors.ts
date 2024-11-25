@@ -1,4 +1,4 @@
-export const setColors = () => {
+export const setColors = (): void => {
   const colors = ["#46655f", "#1c092a", "#496d79", "#a06641", "#560319"];
 
   const root = document.documentElement;

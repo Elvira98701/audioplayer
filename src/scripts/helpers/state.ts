@@ -6,4 +6,5 @@ export const state: IState = {
   playing: false,
   repeating: false,
   volume: 0.5,
+  audioContext: null,
 };

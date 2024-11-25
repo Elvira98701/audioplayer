@@ -8,6 +8,7 @@ import { audioUpdateProgress } from "./audioUpdateProgress";
 import { togglePlaying } from "./togglePlaying";
 import { activeAudio } from "./activeAudio";
 import { setColors } from "./setColors";
+import { setupVisualizer } from "./setupVisualizer";
 
 export const setCurrentAudio = (
   audioId: number,
@@ -30,8 +31,9 @@ export const setCurrentAudio = (
   audioUpdateProgress(current);
   activeAudio();
   setColors();
+  setupVisualizer(current.audio);
 
   setTimeout(() => {
     togglePlaying();
-  }, 10);
+  }, 20);
 };

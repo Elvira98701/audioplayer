@@ -1,5 +1,5 @@
 import { htmlElements } from "@scripts/helpers/htmlElements";
 
-export const handleCloseMenu = () => {
+export const handleCloseMenu = (): void => {
   htmlElements.playerBlock?.classList.remove("isActive");
 };

@@ -27,6 +27,6 @@ const toHtmlTracks = (audio: IAudioTrack): string => {
 export const renderAllTracks = (
   tracksList: HTMLUListElement,
   audio: IAudioTrack
-) => {
+): void => {
   tracksList.innerHTML += toHtmlTracks(audio);
 };

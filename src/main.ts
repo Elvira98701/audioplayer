@@ -16,23 +16,23 @@ import { handleCloseMenu } from "@scripts/events/handleCloseMenu";
 import "@styles/index.scss";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const renderAudios = async (): Promise<
-    PromiseSettledResult<IAudioTrack>[]
-  > => {
+  const loadAudios = async (): Promise<PromiseSettledResult<IAudioTrack>[]> => {
     const audioPromises = tracks.map((track) => {
       const audio = new Audio(track.link);
 
       return new Promise<IAudioTrack>((resolve, reject) => {
         audio.addEventListener("loadeddata", () => {
-          const newItem = { ...track, duration: audio.duration, audio };
+          const newItem: IAudioTrack = {
+            ...track,
+            duration: audio.duration,
+            audio,
+          };
           state.audios.push(newItem);
-
-          if (htmlElements.tracksList) {
-            renderAllTracks(htmlElements.tracksList, newItem);
-          }
           resolve(newItem);
         });
-        audio.onerror = () => reject(`Track loading error: ${track.track}`);
+
+        audio.onerror = () =>
+          reject(new Error(`Track loading error: ${track.track}`));
       });
     });
 
@@ -40,24 +40,43 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const init = async () => {
-    const audioPromises = await renderAudios();
+    try {
+      const audioPromises = await loadAudios();
 
-    const failedTracks = audioPromises.filter(
-      (result) => result.status === "rejected"
-    );
+      const failedTracks = audioPromises.filter(
+        (result) => result.status === "rejected"
+      );
+      if (failedTracks.length > 0) {
+        console.warn(
+          "Track loading errors:",
+          failedTracks.map((result) => result.reason)
+        );
+      }
 
-    if (failedTracks.length > 0) {
-      console.warn("Tracks loading errors:", failedTracks);
+      const successfulAudios = audioPromises
+        .filter(
+          (result): result is PromiseFulfilledResult<IAudioTrack> =>
+            result.status === "fulfilled"
+        )
+        .map((result) => result.value);
+
+      if (htmlElements.tracksList) {
+        successfulAudios.forEach((audio) =>
+          renderAllTracks(htmlElements.tracksList!, audio)
+        );
+      }
+
+      if (successfulAudios.length > 0 && successfulAudios[0].id) {
+        setCurrentAudio(successfulAudios[0].id, successfulAudios);
+      }
+
+      bindEventListeners();
+    } catch (error) {
+      console.error("Error during initialization:", error);
     }
+  };
 
-    const successfulAudios = audioPromises
-      .filter((result) => result.status === "fulfilled")
-      .map((result) => result.value);
-
-    if (successfulAudios.length > 0 && successfulAudios[0].id) {
-      setCurrentAudio(successfulAudios[0].id, successfulAudios);
-    }
-
+  const bindEventListeners = () => {
     htmlElements.tracksList?.addEventListener("click", handleClickItem);
     htmlElements.repeatButton?.addEventListener("click", handleRepeat);
     htmlElements.shuffleButton?.addEventListener("click", handleShuffle);

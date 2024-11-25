@@ -23,8 +23,8 @@ import image9 from "@assets/images/track9.jpg";
 export const tracks: ITrack[] = [
   {
     id: 1,
-    group: "Justin Bieber, DJ Snake",
-    track: "Let Me Love You",
+    group: "NEFFEX",
+    track: "Rumors",
     link: track1,
     image: image1,
     genre: "EDM",

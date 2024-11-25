@@ -2,7 +2,13 @@ import { state } from "@scripts/helpers/state";
 import { isAudioTrack } from "@scripts/helpers/utils";
 
 export const handleClickPlay = (event: Event): void => {
-  const { current, playing } = state;
+  const { current, playing, audioContext } = state;
+
+  if (audioContext) {
+    audioContext.resume().then(() => {
+      console.log("Playback resumed successfully");
+    });
+  }
 
   if (!isAudioTrack(current)) {
     return;

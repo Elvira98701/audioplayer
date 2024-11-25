@@ -18,6 +18,7 @@ export interface IState {
   playing: boolean;
   repeating: boolean;
   volume: number;
+  audioContext: AudioContext | null;
 }
 
 export interface IHtmlElements {
@@ -38,4 +39,5 @@ export interface IHtmlElements {
   rewindNext: HTMLButtonElement | null;
   progressLine: SVGCircleElement | null;
   line: SVGCircleElement | null;
+  canvas: HTMLCanvasElement | null;
 }

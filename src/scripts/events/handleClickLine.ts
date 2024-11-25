@@ -1,7 +1,7 @@
 import { state } from "@scripts/helpers/state";
 import { isAudioTrack } from "@scripts/helpers/utils";
 
-export const handleClickLine = (event: MouseEvent) => {
+export const handleClickLine = (event: MouseEvent): void => {
   const { current } = state;
 
   if (!isAudioTrack(current)) {

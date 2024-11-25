@@ -37,6 +37,12 @@
                 >
               </p>
               <div class="current__circle">
+                <canvas
+                  class="visualizer"
+                  id="visualizer"
+                  width="600"
+                  height="600"
+                ></canvas>
                 <svg
                   class="current__circle-icon"
                   xmlns="http://www.w3.org/2000/svg"
@@ -102,28 +108,7 @@
                 type="button"
                 id="play"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="70"
-                  height="70"
-                  fill="#000000"
-                  viewBox="0 0 256 256"
-                >
-                  <path
-                    d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm40.55,110.58-52,36A8,8,0,0,1,104,164V92a8,8,0,0,1,12.55-6.58l52,36a8,8,0,0,1,0,13.16Z"
-                  ></path>
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="70"
-                  height="70"
-                  fill="#000000"
-                  viewBox="0 0 256 256"
-                >
-                  <path
-                    d="M128,24A104,104,0,1,0,232,128,104.13,104.13,0,0,0,128,24ZM112,160a8,8,0,0,1-16,0V96a8,8,0,0,1,16,0Zm48,0a8,8,0,0,1-16,0V96a8,8,0,0,1,16,0Z"
-                  ></path>
-                </svg>
+                <div></div>
               </button>
 
               <button
@@ -157,8 +142,8 @@
               <button class="current__button" id="shuffle" title="shuffle">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
+                  width="28"
+                  height="28"
                   fill="#000000"
                   viewBox="0 0 256 256"
                 >
@@ -170,8 +155,8 @@
               <div class="current__button" id="volume">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
+                  width="28"
+                  height="28"
                   fill="#000000"
                   viewBox="0 0 256 256"
                 >
@@ -194,8 +179,8 @@
               <button class="current__button" id="repeat" title="repeat">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
+                  width="28"
+                  height="28"
                   fill="#000000"
                   viewBox="0 0 256 256"
                 >

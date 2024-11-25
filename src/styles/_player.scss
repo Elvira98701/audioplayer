@@ -9,6 +9,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding-block: 20px;
+    overflow: hidden;
 
     &:after {
       content: "";
@@ -18,7 +19,7 @@
       border-radius: inherit;
       background-image: linear-gradient(
         to bottom,
-        rgb(0 0 0 / 0),
+        rgb(0 0 0 / 0.3),
         var(--color-accent-dark)
       );
       z-index: -1;
@@ -117,7 +118,16 @@
   flex: 1.2;
   @include flex-center;
   flex-direction: column;
-  row-gap: clamp(0.625rem, 0.5rem + 0.63vw, 1.25rem);
+  row-gap: 20px;
+
+  @media (max-width: 1000px) {
+    width: 70vw;
+  }
+
+  @media (max-width: 750px) {
+    width: calc(100vw - 40px);
+    row-gap: 15px;
+  }
 
   &__open {
     position: absolute;
@@ -188,6 +198,15 @@
     width: 320px;
     height: 320px;
 
+    .visualizer {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
     &-icon {
       fill: none;
       transform: rotate(-90deg);
@@ -208,6 +227,7 @@
 
   &__image {
     width: 260px;
+    aspect-ratio: 1;
     border-radius: 50%;
     -o-object-fit: cover;
     object-fit: cover;
@@ -241,24 +261,37 @@
     }
 
     &-play {
-      svg {
-        @include square(70px);
+      @include square(60px);
+      @include flex-center;
+      background-color: var(--color-light);
+      border-radius: 50%;
+      transition: all 0.5s;
 
-        &:nth-child(2) {
-          display: none;
-        }
+      div {
+        border: 0;
+        background: transparent;
+        box-sizing: border-box;
+        @include square(22px);
+        transform: translateX(3px);
+        border-color: transparent transparent transparent
+          var(--color-accent-dark);
+        transition: 0.3s all ease;
+        cursor: pointer;
+        border-style: solid;
+        border-width: 10px 0 10px 22px;
       }
 
       &.playing {
-        svg {
-          &:nth-child(1) {
-            display: none;
-          }
-
-          &:nth-child(2) {
-            display: block;
-          }
+        div {
+          border-style: double;
+          border-width: 0px 0 0px 20px;
+          transform: translateX(1px);
+          transition: 0.3s all ease;
         }
+      }
+
+      &:hover {
+        background-color: var(--color-light-additional);
       }
     }
 
@@ -277,7 +310,7 @@
   &__buttons {
     width: 100%;
     background-color: var(--color-light-additional);
-    height: 60px;
+    height: 50px;
     border-radius: var(--border-radius);
     display: flex;
     align-items: center;
