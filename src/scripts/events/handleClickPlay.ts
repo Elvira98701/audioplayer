@@ -4,7 +4,7 @@ import { isAudioTrack } from "@scripts/helpers/utils";
 export const handleClickPlay = (event: Event): void => {
   const { current, playing, audioContext } = state;
 
-  if (audioContext) {
+  if (audioContext && audioContext.state === "suspended") {
     audioContext.resume().then(() => {
       console.log("Playback resumed successfully");
     });

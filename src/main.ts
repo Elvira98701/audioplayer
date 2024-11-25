@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (successfulAudios.length > 0 && successfulAudios[0].id) {
         setCurrentAudio(successfulAudios[0].id, successfulAudios);
+        console.log(state.audioContext);
       }
 
       hidePreloader();

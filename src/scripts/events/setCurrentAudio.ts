@@ -31,6 +31,7 @@ export const setCurrentAudio = (
   audioUpdateProgress(current);
   activeAudio();
   setColors();
+
   setupVisualizer(current.audio);
 
   setTimeout(() => {
