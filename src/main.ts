@@ -67,11 +67,12 @@ document.addEventListener("DOMContentLoaded", () => {
         );
       }
 
+      hidePreloader();
+
       if (successfulAudios.length > 0 && successfulAudios[0].id) {
         setCurrentAudio(successfulAudios[0].id, successfulAudios);
       }
 
-      hidePreloader();
       bindEventListeners();
     } catch (error) {
       console.error("Error during initialization:", error);
