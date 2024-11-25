@@ -14,6 +14,7 @@ import { handleOpenMenu } from "@scripts/events/handleOpenMenu";
 import { handleCloseMenu } from "@scripts/events/handleCloseMenu";
 
 import "@styles/index.scss";
+import { hidePreloader } from "@scripts/events/hidePreloader";
 
 document.addEventListener("DOMContentLoaded", () => {
   const loadAudios = async (): Promise<PromiseSettledResult<IAudioTrack>[]> => {
@@ -70,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setCurrentAudio(successfulAudios[0].id, successfulAudios);
       }
 
+      hidePreloader();
       bindEventListeners();
     } catch (error) {
       console.error("Error during initialization:", error);

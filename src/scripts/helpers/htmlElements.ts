@@ -19,4 +19,5 @@ export const htmlElements: IHtmlElements = {
   progressLine: document.querySelector("#progressLine"),
   line: document.querySelector("#line"),
   canvas: document.querySelector("#visualizer"),
+  preloader: document.querySelector("#preloader"),
 };

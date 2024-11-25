@@ -7,6 +7,9 @@
     <title>Vite + TS</title>
   </head>
   <body>
+    <div class="preloader" id="preloader">
+      <img src="./public/loading.gif" alt="" />
+    </div>
     <div id="app">
       <div class="app__inner container">
         <div class="player">
@@ -28,12 +31,12 @@
             ></button>
             <div class="current__item">
               <span class="current__genre" id="genre">rock</span>
-              <h2 class="current__group" id="group">Justin Bieber, DJ Snake</h2>
-              <h3 class="current__track" id="track">Let Me Love You</h3>
+              <h2 class="current__group" id="group"></h2>
+              <h3 class="current__track" id="track"></h3>
               <p class="current__timeline">
                 <span class="current__timeline-start" id="timeline">00:00</span>
                 <span class="current__timeline-end" id="timelineEnd"
-                  >03:45</span
+                  >00:00</span
                 >
               </p>
               <div class="current__circle">

@@ -40,4 +40,5 @@ export interface IHtmlElements {
   progressLine: SVGCircleElement | null;
   line: SVGCircleElement | null;
   canvas: HTMLCanvasElement | null;
+  preloader: HTMLDivElement | null;
 }
