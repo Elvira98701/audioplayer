@@ -19,6 +19,7 @@ export interface IState {
   repeating: boolean;
   volume: number;
   audioContext: AudioContext | null;
+  analyser: AnalyserNode | null;
 }
 
 export interface IHtmlElements {

@@ -17,12 +17,12 @@ export const setupVisualizer = (
       state.audioContext.createMediaElementSource(audioElement);
   }
 
-  const analyser = state.audioContext.createAnalyser();
-  audioElement.sourceNode.connect(analyser);
-  analyser.connect(state.audioContext.destination);
+  state.analyser = state.audioContext.createAnalyser();
+  audioElement.sourceNode.connect(state.analyser);
+  state.analyser.connect(state.audioContext.destination);
 
-  analyser.fftSize = 256;
-  const bufferLength = analyser.frequencyBinCount;
+  state.analyser.fftSize = 256;
+  const bufferLength = state.analyser.frequencyBinCount;
   const dataArray = new Uint8Array(bufferLength);
 
   const ctx = canvas.getContext("2d");
@@ -33,7 +33,8 @@ export const setupVisualizer = (
   const centerY = canvas.height / 2;
 
   function visualize(): void {
-    analyser.getByteFrequencyData(dataArray);
+    if (!state.analyser) return;
+    state.analyser.getByteFrequencyData(dataArray);
     if (!canvas || !ctx) return;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);

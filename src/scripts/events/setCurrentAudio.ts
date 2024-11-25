@@ -8,7 +8,6 @@ import { audioUpdateProgress } from "./audioUpdateProgress";
 import { togglePlaying } from "./togglePlaying";
 import { activeAudio } from "./activeAudio";
 import { setColors } from "./setColors";
-import { setupVisualizer } from "./setupVisualizer";
 
 export const setCurrentAudio = (
   audioId: number,
@@ -32,8 +31,14 @@ export const setCurrentAudio = (
   activeAudio();
   setColors();
 
-  if (state.audioContext) {
-    setupVisualizer(current.audio);
+  if (state.audioContext && state.analyser) {
+    const audio = current.audio as HTMLAudioElement & {
+      sourceNode?: MediaElementAudioSourceNode;
+    };
+    if (!audio.sourceNode) {
+      audio.sourceNode = state.audioContext.createMediaElementSource(audio);
+      audio.sourceNode.connect(state.analyser);
+    }
   }
 
   setTimeout(() => {

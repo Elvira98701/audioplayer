@@ -15,6 +15,7 @@ import { handleCloseMenu } from "@scripts/events/handleCloseMenu";
 import { hidePreloader } from "@scripts/events/hidePreloader";
 
 import "@styles/index.scss";
+import { handleCreateAudioContext } from "@scripts/events/handleCreateAudioContext";
 
 document.addEventListener("DOMContentLoaded", () => {
   const loadAudios = async (): Promise<PromiseSettledResult<IAudioTrack>[]> => {
@@ -86,6 +87,11 @@ document.addEventListener("DOMContentLoaded", () => {
     htmlElements.volume?.addEventListener("input", handleVolume);
     htmlElements.openButton?.addEventListener("click", handleOpenMenu);
     htmlElements.closeButton?.addEventListener("click", handleCloseMenu);
+    htmlElements.playButton?.addEventListener(
+      "click",
+      handleCreateAudioContext,
+      { once: true }
+    );
   };
 
   init();
