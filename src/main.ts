@@ -12,9 +12,9 @@ import { handleShuffle } from "@scripts/events/handleShuffle";
 import { handleVolume } from "@scripts/events/handleVolume";
 import { handleOpenMenu } from "@scripts/events/handleOpenMenu";
 import { handleCloseMenu } from "@scripts/events/handleCloseMenu";
+import { hidePreloader } from "@scripts/events/hidePreloader";
 
 import "@styles/index.scss";
-import { hidePreloader } from "@scripts/events/hidePreloader";
 
 document.addEventListener("DOMContentLoaded", () => {
   const loadAudios = async (): Promise<PromiseSettledResult<IAudioTrack>[]> => {
@@ -69,7 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (successfulAudios.length > 0 && successfulAudios[0].id) {
         setCurrentAudio(successfulAudios[0].id, successfulAudios);
-        console.log(state.audioContext);
       }
 
       hidePreloader();

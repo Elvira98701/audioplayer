@@ -32,7 +32,9 @@ export const setCurrentAudio = (
   activeAudio();
   setColors();
 
-  setupVisualizer(current.audio);
+  if (state.audioContext) {
+    setupVisualizer(current.audio);
+  }
 
   setTimeout(() => {
     togglePlaying();
