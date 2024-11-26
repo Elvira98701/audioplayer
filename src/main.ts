@@ -68,12 +68,10 @@ document.addEventListener("DOMContentLoaded", () => {
         );
       }
 
-      hidePreloader();
-
       if (successfulAudios.length > 0 && successfulAudios[0].id) {
         setCurrentAudio(successfulAudios[0].id, successfulAudios);
       }
-
+      hidePreloader();
       bindEventListeners();
     } catch (error) {
       console.error("Error during initialization:", error);
@@ -94,5 +92,18 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   };
 
-  init();
+  htmlElements.startButton?.addEventListener(
+    "click",
+    (event) => {
+      init();
+      const preloaderImage: HTMLImageElement | null =
+        document.querySelector(".preloader__image");
+      const currentTarget = event.currentTarget as HTMLButtonElement;
+      currentTarget.style.display = "none";
+      if (preloaderImage) {
+        preloaderImage.style.display = "block";
+      }
+    },
+    { once: true }
+  );
 });

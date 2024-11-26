@@ -9,6 +9,26 @@
     -webkit-animation: hide 0.3s;
     animation: hide 0.3s;
   }
+
+  &__button {
+    background-color: var(--color-light-additional);
+    border-radius: var(--border-radius);
+    padding-inline: 20px;
+    font-family: "Bebas Neue", sans-serif;
+    @include flex-center;
+    min-height: 60px;
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &__image {
+    display: none;
+  }
 }
 
 @-webkit-keyframes hide {

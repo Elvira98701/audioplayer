@@ -20,4 +20,5 @@ export const htmlElements: IHtmlElements = {
   line: document.querySelector("#line"),
   canvas: document.querySelector("#visualizer"),
   preloader: document.querySelector("#preloader"),
+  startButton: document.querySelector("#startButton"),
 };
