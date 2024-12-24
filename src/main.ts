@@ -20,9 +20,10 @@ import "@styles/index.scss";
 const loadAudios = async (): Promise<PromiseSettledResult<IAudioTrack>[]> => {
   const audioPromises = tracks.map((track) => {
     const audio = new Audio(track.link);
+    audio.preload = "metadata";
 
     return new Promise<IAudioTrack>((resolve, reject) => {
-      audio.addEventListener("canplaythrough", () => {
+      audio.addEventListener("loadedmetadata", () => {
         const newItem: IAudioTrack = {
           ...track,
           duration: audio.duration,
