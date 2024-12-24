@@ -17,93 +17,89 @@ import { handleCreateAudioContext } from "@scripts/events/handleCreateAudioConte
 
 import "@styles/index.scss";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const loadAudios = async (): Promise<PromiseSettledResult<IAudioTrack>[]> => {
-    const audioPromises = tracks.map((track) => {
-      const audio = new Audio(track.link);
+const loadAudios = async (): Promise<PromiseSettledResult<IAudioTrack>[]> => {
+  const audioPromises = tracks.map((track) => {
+    const audio = new Audio(track.link);
 
-      return new Promise<IAudioTrack>((resolve, reject) => {
-        audio.addEventListener("canplaythrough", () => {
-          const newItem: IAudioTrack = {
-            ...track,
-            duration: audio.duration,
-            audio,
-          };
-          state.audios.push(newItem);
-          resolve(newItem);
-        });
-
-        audio.onerror = () =>
-          reject(new Error(`Track loading error: ${track.track}`));
+    return new Promise<IAudioTrack>((resolve, reject) => {
+      audio.addEventListener("canplaythrough", () => {
+        const newItem: IAudioTrack = {
+          ...track,
+          duration: audio.duration,
+          audio,
+        };
+        state.audios.push(newItem);
+        resolve(newItem);
       });
+
+      audio.onerror = () =>
+        reject(new Error(`Track loading error: ${track.track}`));
     });
+  });
 
-    return Promise.allSettled(audioPromises);
-  };
+  return Promise.allSettled(audioPromises);
+};
 
-  const init = async () => {
-    try {
-      const audioPromises = await loadAudios();
+const init = async () => {
+  try {
+    const audioPromises = await loadAudios();
 
-      const failedTracks = audioPromises.filter(
-        (result) => result.status === "rejected"
-      );
-      if (failedTracks.length > 0) {
-        console.warn(
-          "Track loading errors:",
-          failedTracks.map((result) => result.reason)
-        );
-      }
-
-      const successfulAudios = audioPromises
-        .filter(
-          (result): result is PromiseFulfilledResult<IAudioTrack> =>
-            result.status === "fulfilled"
-        )
-        .map((result) => result.value);
-
-      if (htmlElements.tracksList) {
-        successfulAudios.forEach((audio) =>
-          renderAllTracks(htmlElements.tracksList!, audio)
-        );
-      }
-
-      if (successfulAudios.length > 0 && successfulAudios[0].id) {
-        setCurrentAudio(successfulAudios[0].id, successfulAudios);
-      }
-      hidePreloader();
-      bindEventListeners();
-    } catch (error) {
-      console.error("Error during initialization:", error);
-    }
-  };
-
-  const bindEventListeners = () => {
-    htmlElements.tracksList?.addEventListener("click", handleClickItem);
-    htmlElements.repeatButton?.addEventListener("click", handleRepeat);
-    htmlElements.shuffleButton?.addEventListener("click", handleShuffle);
-    htmlElements.volume?.addEventListener("input", handleVolume);
-    htmlElements.openButton?.addEventListener("click", handleOpenMenu);
-    htmlElements.closeButton?.addEventListener("click", handleCloseMenu);
-    htmlElements.playButton?.addEventListener(
-      "click",
-      handleCreateAudioContext,
-      { once: true }
+    const failedTracks = audioPromises.filter(
+      (result) => result.status === "rejected"
     );
-  };
+    if (failedTracks.length > 0) {
+      console.warn(
+        "Track loading errors:",
+        failedTracks.map((result) => result.reason)
+      );
+    }
 
-  htmlElements.startButton?.addEventListener(
-    "click",
-    (event) => {
-      init();
-      const preloaderImage: HTMLImageElement | null =
-        document.querySelector(".preloader__image");
-      const currentTarget = event.currentTarget as HTMLButtonElement;
-      currentTarget.style.display = "none";
-      if (preloaderImage) {
-        preloaderImage.style.display = "block";
-      }
-    },
-    { once: true }
-  );
-});
+    const successfulAudios = audioPromises
+      .filter(
+        (result): result is PromiseFulfilledResult<IAudioTrack> =>
+          result.status === "fulfilled"
+      )
+      .map((result) => result.value);
+
+    if (htmlElements.tracksList) {
+      successfulAudios.forEach((audio) =>
+        renderAllTracks(htmlElements.tracksList!, audio)
+      );
+    }
+
+    if (successfulAudios.length > 0 && successfulAudios[0].id) {
+      setCurrentAudio(successfulAudios[0].id, successfulAudios);
+    }
+    hidePreloader();
+    bindEventListeners();
+  } catch (error) {
+    console.error("Error during initialization:", error);
+  }
+};
+
+const bindEventListeners = () => {
+  htmlElements.tracksList?.addEventListener("click", handleClickItem);
+  htmlElements.repeatButton?.addEventListener("click", handleRepeat);
+  htmlElements.shuffleButton?.addEventListener("click", handleShuffle);
+  htmlElements.volume?.addEventListener("input", handleVolume);
+  htmlElements.openButton?.addEventListener("click", handleOpenMenu);
+  htmlElements.closeButton?.addEventListener("click", handleCloseMenu);
+  htmlElements.playButton?.addEventListener("click", handleCreateAudioContext, {
+    once: true,
+  });
+};
+
+htmlElements.startButton?.addEventListener(
+  "click",
+  (event) => {
+    init();
+    const preloaderImage: HTMLImageElement | null =
+      document.querySelector(".preloader__image");
+    const currentTarget = event.currentTarget as HTMLButtonElement;
+    currentTarget.style.display = "none";
+    if (preloaderImage) {
+      preloaderImage.style.display = "block";
+    }
+  },
+  { once: true }
+);
