@@ -92,15 +92,17 @@ const bindEventListeners = () => {
 
 htmlElements.startButton?.addEventListener(
   "click",
-  (event) => {
-    init();
-    const preloaderImage: HTMLImageElement | null =
-      document.querySelector(".preloader__image");
+  async (event) => {
     const currentTarget = event.currentTarget as HTMLButtonElement;
     currentTarget.style.display = "none";
+
+    const preloaderImage: HTMLImageElement | null =
+      document.querySelector(".preloader__image");
     if (preloaderImage) {
       preloaderImage.style.display = "block";
     }
+
+    await init();
   },
   { once: true }
 );
