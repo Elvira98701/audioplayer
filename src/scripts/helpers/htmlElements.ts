@@ -21,4 +21,6 @@ export const htmlElements: IHtmlElements = {
   canvas: document.querySelector("#visualizer"),
   preloader: document.querySelector("#preloader"),
   startButton: document.querySelector("#startButton"),
+  prevButton: document.querySelector("#prev"),
+  nextButton: document.querySelector("#next"),
 };

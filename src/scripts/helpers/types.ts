@@ -43,4 +43,6 @@ export interface IHtmlElements {
   canvas: HTMLCanvasElement | null;
   preloader: HTMLDivElement | null;
   startButton: HTMLButtonElement | null;
+  prevButton: HTMLButtonElement | null;
+  nextButton: HTMLButtonElement | null;
 }

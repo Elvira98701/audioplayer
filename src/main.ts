@@ -6,14 +6,8 @@ import { htmlElements } from "@scripts/helpers/htmlElements";
 import { IAudioTrack } from "@scripts/helpers/types";
 
 import { setCurrentAudio } from "@scripts/events/setCurrentAudio";
-import { handleClickItem } from "@scripts/events/handleClickItem";
-import { handleRepeat } from "@scripts/events/handleRepeat";
-import { handleShuffle } from "@scripts/events/handleShuffle";
-import { handleVolume } from "@scripts/events/handleVolume";
-import { handleOpenMenu } from "@scripts/events/handleOpenMenu";
-import { handleCloseMenu } from "@scripts/events/handleCloseMenu";
 import { hidePreloader } from "@scripts/events/hidePreloader";
-import { handleCreateAudioContext } from "@scripts/events/handleCreateAudioContext";
+import { bindEventListeners } from "@scripts/events/bindEventListeners";
 
 import "@styles/index.scss";
 
@@ -76,18 +70,6 @@ const init = async () => {
   } catch (error) {
     console.error("Error during initialization:", error);
   }
-};
-
-const bindEventListeners = () => {
-  htmlElements.tracksList?.addEventListener("click", handleClickItem);
-  htmlElements.repeatButton?.addEventListener("click", handleRepeat);
-  htmlElements.shuffleButton?.addEventListener("click", handleShuffle);
-  htmlElements.volume?.addEventListener("input", handleVolume);
-  htmlElements.openButton?.addEventListener("click", handleOpenMenu);
-  htmlElements.closeButton?.addEventListener("click", handleCloseMenu);
-  htmlElements.playButton?.addEventListener("click", handleCreateAudioContext, {
-    once: true,
-  });
 };
 
 htmlElements.startButton?.addEventListener(
