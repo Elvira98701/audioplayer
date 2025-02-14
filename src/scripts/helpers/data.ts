@@ -10,15 +10,15 @@ import track7 from "@assets/audio/track7.mp3";
 import track8 from "@assets/audio/track8.mp3";
 import track9 from "@assets/audio/track9.mp3";
 
-import image1 from "@assets/images/track1.jpg";
-import image2 from "@assets/images/track2.jpg";
-import image3 from "@assets/images/track3.jpg";
-import image4 from "@assets/images/track4.jpg";
-import image5 from "@assets/images/track5.jpg";
-import image6 from "@assets/images/track6.jpg";
-import image7 from "@assets/images/track7.jpg";
-import image8 from "@assets/images/track8.jpg";
-import image9 from "@assets/images/track9.jpg";
+import image1 from "@assets/images/track1.avif";
+import image2 from "@assets/images/track2.avif";
+import image3 from "@assets/images/track3.avif";
+import image4 from "@assets/images/track4.avif";
+import image5 from "@assets/images/track5.avif";
+import image6 from "@assets/images/track6.avif";
+import image7 from "@assets/images/track7.avif";
+import image8 from "@assets/images/track8.avif";
+import image9 from "@assets/images/track9.avif";
 
 export const tracks: ITrack[] = [
   {
